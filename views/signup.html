@@ -1,4 +1,11 @@
-<form method="GET">
+{% extends 'layout.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<form method="POST">
   <label>이름</label>
   <input type="text" name="name">
 
@@ -10,3 +17,4 @@
 
   <button type="submit">회원가입</button>
 </form>
+{% endblock %}

@@ -52,4 +52,6 @@ module.exports.routes = {
 
   'GET  /drop'  : 'UserController.drop',
 
+  'GET  /login' : { view: 'login' },
+
 };
