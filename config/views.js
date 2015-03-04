@@ -30,7 +30,27 @@ module.exports.views = {
   *                                                                           *
   ****************************************************************************/
 
-  engine: 'ejs',
+  // engine: 'ejs',
+  engine: {
+    ext: 'html', // Or `html`, whatever you are using
+    fn: function (pathName, locals, cb) {
+      var swig = require('swig');
+      swig.setDefaults({tagControls: ['{%', '%}']});
+      swig.setFilter('isUndefined', function (element) {
+        return typeof element == 'undefined';
+      });
+      swig.setFilter('floatFixed', function (element) {
+        return element.toFixed(1);
+      });
+      swig.setFilter('currency', function (element) {
+        if ( !element ) element = 0;
+
+        return element.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+      });
+
+      return swig.renderFile(pathName, locals, cb);
+    }
+  },
 
 
   /****************************************************************************

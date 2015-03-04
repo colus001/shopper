@@ -45,8 +45,11 @@ module.exports.routes = {
   ***************************************************************************/
 
   // 주소창에 엔터를 치는 것은 HTTP GET REQUEST
+  // <form action="/signup"></form>
 
   'GET  /signup': 'UserController.signup',
   'POST /signup': 'UserController.create',
+
+  'GET  /drop'  : 'UserController.drop',
 
 };

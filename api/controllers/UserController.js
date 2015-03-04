@@ -18,6 +18,8 @@ module.exports = {
   },
 
   signup: function (req, res) {
+    console.log(req.query);
+
     res.view('signup');
   },
 
@@ -61,16 +63,40 @@ module.exports = {
 
     // User.create(req.body) -> function (err, user) {};
 
-    // 1.
+    // CREATE / READ / UPDATE / DELETE
+
+    // req.body 인 User 를 만들거에요.
     User.create(req.body, function (err, user) {
       if (err) {
         console.log('ERROR:', err);
         return res.serverError(err.message);
       }
 
-      return res.json(user);
+      // return res.json(user);
+      return res.redirect('/signup');
     });
   },
+
+  // sails generate api User 했기 때문에 User.~~~ 를 사용할 수 있음.
+
+  drop: function (req, res) {
+    console.log(req.query);
+
+    // User db 에서 id 가 req.query.id 인 놈을 지울거에요.
+    User.destroy({ id: req.query.id }, function (err, user) {
+      if (err) {
+        console.log('ERROR:', err);
+        return res.serverError(err.message);
+      }
+
+      return res.json(user);
+      // return res.redirect('/signup');
+    });
+  },
+
+  login: function (req, res) {
+
+  }
 
 };
 
