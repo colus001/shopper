@@ -7,6 +7,53 @@
 
 module.exports = {
 
+	index: function (req, res) {
+		return res.view('homepage.html');
+	},
+
+	// route.js
+	// 'POST /edit/:id'  : 'UserController.edit', -> req.params.id 를 보면 됨.
+
+	// 프로필 수정하는 기능
+	edit: function (req, res) {
+		// var query = { id: req.params.id }; // 그냥 id 만 넣어도 됨
+		var query = req.params.id;
+		// id 는 일반적인 경우 자동으로 생성되는 숫자 혹은 숫자+문자의 값, OBJECT_ID 등
+
+		// 찾고, 수정하고, 콜백
+		User.update(query, req.body, function (err, users) {
+			if (err) return res.serverError(err);
+			if (users.length === 0) return res.serverError('USER_NOT_FOUND');
+
+			return res.view('profile.html', users[0]);
+		});
+	},
+
+	logout: function (req, res) {
+    delete req.session.user_id;
+
+    return res.redirect('/login');
+  },
+
+	login: function (req, res) {
+		console.log(req.body);
+
+		var query = { email: req.body.email };
+
+		User.findOne(query, function (err, user) {
+			if (err) return res.serverError(err);
+			if (!user) return res.serverError('USER_NOT_FOUND');
+
+			// 해당 이메일을 가진 유저는 있음.
+			if ( user.password !== req.body.password )
+				return res.serverError('PASSWORD_NOT_MATCH');
+
+			req.session.user_id = user.id;
+
+			return res.view('profile.html', user);
+		});
+	},
+
   // EXPRESS.js
 	admin: function (req, res) {
     res.send('SUCCESS');
@@ -93,10 +140,6 @@ module.exports = {
       // return res.redirect('/signup');
     });
   },
-
-  login: function (req, res) {
-
-  }
 
 };
 

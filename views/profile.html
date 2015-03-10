@@ -1,0 +1,37 @@
+<form action="/edit/{{ id }}" method="POST">
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>이메일</th>
+      <th>비밀번호</th>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" name="name" value="{{ name }}">
+      </td>
+      <td>
+        {{ email }}
+      </td>
+      <td>
+        <input type="text" name="password" value="{{ password }}">
+      </td>
+    </tr>
+  </table>
+
+  <button type="submit">수정하기</button>
+</form>
+
+<!-- 개발 -> 테스트 -> 수정 -> 개발 -->
+
+<!--
+res.view('profile.html', user);
+
+user = {
+  "name": "헬로World",
+  "email": "hello@world.com",
+  "password": "123456",
+  "createdAt": "2015-03-04T11:48:33.855Z",
+  "updatedAt": "2015-03-10T12:02:39.683Z",
+  "id": 7
+};
+-->

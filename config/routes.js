@@ -32,7 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'homepage' },
+  // '/': { view: 'homepage' },
+  'GET  /': 'UserController.index',
+  'GET /logout': 'UserController.logout',
 
   /***************************************************************************
   *                                                                          *
@@ -53,5 +55,7 @@ module.exports.routes = {
   'GET  /drop'  : 'UserController.drop',
 
   'GET  /login' : { view: 'login' },
+  'POST /login' : 'UserController.login',
 
+  'POST /edit/:id'  : 'UserController.edit', // :id 는 req.params.id 로 읽을 수 있다.
 };
