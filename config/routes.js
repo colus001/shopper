@@ -57,5 +57,7 @@ module.exports.routes = {
   'GET  /login' : { view: 'login' },
   'POST /login'     : 'UserController.login',
 
+  'GET  /product' : { view: 'product' },
+
   'POST /edit/:id'  : 'UserController.edit', // :id 는 req.params.id 로 읽을 수 있다.
 };

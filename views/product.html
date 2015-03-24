@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}Product{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<h3>상품 등록</h3>
+
+<form method="POST">
+  <label>이름</label>
+  <input type="text" name="name">
+
+  <label>가격</label>
+  <input type="number" name="price">
+
+  <label>설명</label>
+  <textarea name="description" rows="3"></textarea>
+
+  <button type="submit">상품 등록</button>
+</form>
+{% endblock %}
