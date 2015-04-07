@@ -8,6 +8,8 @@
 module.exports = {
 
 	index: function (req, res) {
+		console.log(req.session);
+
 		return res.view('homepage.html');
 	},
 
@@ -69,6 +71,19 @@ module.exports = {
 
     res.view('signup');
   },
+
+	// admin: function (req, res ) {
+	// 	User
+	// 		.count({})
+	// 		.then(function (count) {
+	// 			if ( count === 0 ) req.body.permission = 'ADMIN';
+	//
+	// 			return User.create(req.body);
+	// 		})
+	// 		.then(function (user) {
+	// 			return res.redirect('/login');
+	// 		});
+	// },
 
   // create: function (req, res) {
   //   console.log(req.body);
@@ -140,10 +155,10 @@ module.exports = {
       // return res.redirect('/signup');
     });
   },
-
 };
 
 function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	return re.test(email);
 }

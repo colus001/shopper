@@ -8,6 +8,7 @@
  *
  */
 
+  // GET localhost:1337/
  // MIDDLE WARE -> express
 module.exports = function(req, res, next) {
   console.log(req.session);
@@ -17,6 +18,7 @@ module.exports = function(req, res, next) {
   if ( req.session && req.session.user_id ) return next();
 
   return res.redirect('/login');
+  // return res.forbidden();
 
   // User is not allowed
   // (default res.forbidden() behavior can be overridden in `config/403.js`)

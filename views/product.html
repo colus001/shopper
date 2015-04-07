@@ -7,7 +7,9 @@
 {% block content %}
 <h3>상품 등록</h3>
 
-<form method="POST">
+<form method="POST" action="/product">
+  <!-- <input type="hidden" name="createdBy" value="id"/> -->
+
   <label>이름</label>
   <input type="text" name="name">
 
@@ -19,4 +21,32 @@
 
   <button type="submit">상품 등록</button>
 </form>
+
+{% if products.length > 0 %}
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>등록한 사람</th>
+      <th>상품명</th>
+      <th>가격</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ product.createdBy.name }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.description }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h1>등록된 상품이 없습니다.</h1>
+{% endif %}
+
 {% endblock %}
